@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gere e valide CPF, CNPJ (inclusive o novo CNPJ alfanumérico) e códigos de barras EAN-13 fictícios para testes de software. Grátis, rápido e sem cadastro.">
+    <meta name="keywords" content="gerador de CPF, gerador de CNPJ, CNPJ alfanumérico, validador de CPF, gerador EAN-13, massa de teste, dados para teste">
+    <meta name="author" content="Enzo Raitz">
+    <title>Massa de Teste | Gerador e validador de CPF, CNPJ e EAN-13</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="canonical" href="https://raitz-enzo.github.io/MassaDeTeste/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="imagens/icone.svg">
+    <link rel="icon" type="image/png" sizes="192x192" href="imagens/icone.png">
+    <link rel="apple-touch-icon" href="imagens/icone.png">
+
+    <!-- Open Graph (WhatsApp, Facebook e outros) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Massa de Teste">
+    <meta property="og:title" content="Massa de Teste | Gerador e validador de CPF, CNPJ e EAN-13">
+    <meta property="og:description" content="Dados fictícios e válidos para testar sistemas: CPF, CNPJ, EAN-13 e clientes completos, em poucos segundos.">
+    <meta property="og:url" content="https://raitz-enzo.github.io/MassaDeTeste/">
+    <meta property="og:image" content="https://raitz-enzo.github.io/MassaDeTeste/imagens/capa.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Massa de Teste: gerador e validador de CPF, CNPJ e EAN-13">
+
+    <!-- Twitter Card (X) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Massa de Teste | Gerador e validador de CPF, CNPJ e EAN-13">
+    <meta name="twitter:description" content="Dados fictícios e válidos para testar sistemas: CPF, CNPJ, EAN-13 e clientes completos, em poucos segundos.">
+    <meta name="twitter:image" content="https://raitz-enzo.github.io/MassaDeTeste/imagens/capa.png">
+    <meta name="twitter:image:alt" content="Massa de Teste: gerador e validador de CPF, CNPJ e EAN-13">
+
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <a class="pular" href="#ferramenta">Pular para a ferramenta</a>
+
+    <header>
+        <a class="marca" href="./">
+            <img src="imagens/icone.svg" alt="" width="36" height="36">
+            <span>Massa de Teste</span>
+        </a>
+        <nav aria-label="Navegação principal">
+            <ul>
+                <li><a href="#ferramenta">Gerar</a></li>
+                <li><a href="#validar">Validar</a></li>
+                <li><a href="#cliente">Cliente fictício</a></li>
+                <li><a href="#como-funciona">Como funciona</a></li>
+            </ul>
+        </nav>
+        <button type="button" id="botao-tema" class="alternar-tema" aria-pressed="false">Escuro</button>
+    </header>
+
+    <div class="topo">
+        <p class="etiqueta">Ferramenta gratuita para QA e desenvolvimento</p>
+        <h1>Gerador e validador de CPF, CNPJ e EAN-13</h1>
+        <p class="apresentacao">Dados fictícios, matematicamente válidos, para preencher cadastros de teste em segundos. Tudo roda no seu navegador.</p>
+    </div>
+
+    <main>
+        <!-- Ferramenta principal: gerador -->
+        <section id="ferramenta" class="cartao" aria-labelledby="titulo-gerar">
+            <h2 id="titulo-gerar">Gerar documentos</h2>
+            <form id="form-gerar">
+                <fieldset class="tipos">
+                    <legend>Tipo de dado</legend>
+                    <label><input type="radio" name="tipo" value="cpf" checked> CPF</label>
+                    <label><input type="radio" name="tipo" value="cnpj"> CNPJ</label>
+                    <label><input type="radio" name="tipo" value="cnpj-alfa"> CNPJ alfanumérico</label>
+                    <label><input type="radio" name="tipo" value="ean13"> EAN-13</label>
+                </fieldset>
+
+                <div class="opcoes">
+                    <p>
+                        <label for="quantidade">Quantidade</label>
+                        <input type="number" id="quantidade" name="quantidade" min="1" max="100" value="1" required>
+                    </p>
+                    <p id="opcao-uf">
+                        <label for="uf">Região do CPF</label>
+                        <select id="uf" name="uf">
+                            <option value="">Qualquer</option>
+                        </select>
+                    </p>
+                    <p class="caixa">
+                        <label><input type="checkbox" id="mascara" name="mascara" checked> Com pontuação</label>
+                    </p>
+                </div>
+
+                <button type="submit" class="botao">Gerar</button>
+            </form>
+
+            <div id="resultado" class="resultado" aria-live="polite"></div>
+
+            <div id="acoes-resultado" class="acoes" hidden>
+                <button type="button" class="botao-secundario" id="copiar-todos">Copiar todos</button>
+                <button type="button" class="botao-secundario" id="baixar-txt">Baixar .txt</button>
+                <button type="button" class="botao-secundario" id="baixar-csv">Baixar .csv</button>
+                <button type="button" class="botao-secundario" id="baixar-json">Baixar .json</button>
+            </div>
+        </section>
+
+        <!-- Espaço publicitário: logo depois do gerador no celular, coluna lateral no desktop -->
+        <aside class="anuncio" aria-label="Publicidade">
+            <p class="anuncio-rotulo">Publicidade</p>
+            <div class="anuncio-espaco">
+                <p>Espaço para anúncio<br><strong>300 x 250</strong></p>
+                <p class="anuncio-contato">Anuncie para quem testa software: <a href="mailto:enzoraitz25@gmail.com?subject=Anúncio%20no%20Massa%20de%20Teste">fale comigo</a></p>
+            </div>
+        </aside>
+
+        <!-- Validador -->
+        <section id="validar" class="cartao" aria-labelledby="titulo-validar">
+            <h2 id="titulo-validar">Validar</h2>
+            <p class="dica">Cole um ou mais valores, um por linha. O tipo é detectado pelo tamanho: 11 dígitos é CPF, 14 caracteres é CNPJ e 13 dígitos é EAN-13.</p>
+            <form id="form-validar">
+                <label for="entrada-validar" class="so-leitor">Valores para validar</label>
+                <textarea id="entrada-validar" rows="4" placeholder="123.456.789-09&#10;12.ABC.345/01DE-35&#10;7891234567895"></textarea>
+                <p class="linha-botoes">
+                    <button type="submit" class="botao">Validar</button>
+                    <label class="botao-secundario arquivo">
+                        Importar arquivo .txt ou .csv
+                        <input type="file" id="arquivo-validar" accept=".txt,.csv,text/plain,text/csv">
+                    </label>
+                </p>
+            </form>
+            <div id="resultado-validar" aria-live="polite"></div>
+        </section>
+
+        <!-- Cliente fictício completo (APIs) -->
+        <section id="cliente" class="cartao" aria-labelledby="titulo-cliente">
+            <h2 id="titulo-cliente">Cliente fictício completo</h2>
+            <p class="dica">Nome, e-mail, telefone e data de nascimento vêm da API Random User; o endereço vem de um CEP real consultado na ViaCEP. As duas consultas rodam ao mesmo tempo.</p>
+            <form id="form-cliente" class="opcoes">
+                <p>
+                    <label for="cep">CEP (opcional)</label>
+                    <input type="text" id="cep" inputmode="numeric" placeholder="85660-000" maxlength="9" autocomplete="postal-code">
+                </p>
+                <p>
+                    <label for="tipo-cliente">Tipo de cliente</label>
+                    <select id="tipo-cliente">
+                        <option value="pf">Pessoa física (CPF)</option>
+                        <option value="pj">Pessoa jurídica (CNPJ)</option>
+                    </select>
+                </p>
+                <p class="caixa">
+                    <button type="submit" class="botao" id="botao-cliente">Gerar cliente</button>
+                </p>
+            </form>
+            <div id="resultado-cliente" aria-live="polite"></div>
+            <div id="acoes-cliente" class="acoes" hidden>
+                <button type="button" class="botao-secundario" id="copiar-cliente">Copiar como JSON</button>
+                <button type="button" class="botao-secundario" id="compartilhar-cliente">Compartilhar</button>
+            </div>
+        </section>
+
+        <!-- Histórico local -->
+        <section id="historico" class="cartao" aria-labelledby="titulo-historico">
+            <div class="cabecalho-cartao">
+                <h2 id="titulo-historico">Histórico</h2>
+                <button type="button" class="botao-secundario pequeno" id="limpar-historico">Limpar</button>
+            </div>
+            <p class="dica">Os últimos 30 valores gerados ficam salvos só neste navegador.</p>
+            <ol id="lista-historico" class="historico"></ol>
+        </section>
+    </main>
+
+    <!-- Conteúdo complementar -->
+    <div class="conteudo">
+        <section id="como-funciona">
+            <h2>Como funciona</h2>
+            <h3>CPF</h3>
+            <p>O CPF tem 9 dígitos base e 2 dígitos verificadores. Cada verificador é calculado multiplicando os dígitos anteriores por pesos decrescentes (10 a 2 e depois 11 a 2), somando e tirando o resto da divisão por 11: se o resto for menor que 2, o dígito é 0; senão, é 11 menos o resto. O nono dígito indica a região fiscal onde o CPF foi emitido, por isso dá para escolher a região.</p>
+            <h3>CNPJ e CNPJ alfanumérico</h3>
+            <p>O CNPJ tem 8 caracteres de raiz, 4 de filial (0001 é a matriz) e 2 verificadores, com pesos de 2 a 9 aplicados da direita para a esquerda. A partir de julho de 2026 a Receita Federal passou a emitir CNPJs alfanuméricos: os 12 primeiros caracteres podem ter letras, e cada caractere vale o seu código ASCII menos 48 no cálculo. Os verificadores continuam numéricos. Vale testar se o seu sistema aceita esse formato novo.</p>
+            <h3>EAN-13</h3>
+            <p>É o código de barras dos produtos no varejo. Os 12 primeiros dígitos são multiplicados alternadamente por 1 e 3; o verificador é o que falta para a soma chegar ao próximo múltiplo de 10. Os códigos gerados aqui começam com 789, o prefixo do Brasil, e vêm com o desenho do código de barras para testar leitores no PDV.</p>
+
+            <h3>Perguntas frequentes</h3>
+            <details>
+                <summary>Esses documentos existem de verdade?</summary>
+                <p>Não. Eles apenas passam na validação matemática. Um CPF ou CNPJ gerado pode, por coincidência, pertencer a alguém, por isso use só em ambientes de teste.</p>
+            </details>
+            <details>
+                <summary>Meus dados são enviados para algum servidor?</summary>
+                <p>Não. A geração e a validação acontecem no seu navegador. Só o cliente fictício consulta as APIs públicas Random User e ViaCEP.</p>
+            </details>
+            <details>
+                <summary>Para que serve o histórico?</summary>
+                <p>Para recuperar um valor usado num teste anterior sem precisar gerar de novo. Ele fica no armazenamento local do navegador e pode ser apagado no botão Limpar.</p>
+            </details>
+
+            <p class="aviso"><strong>Uso responsável:</strong> esta ferramenta serve para testes de software, homologação e ensino. Usar dados gerados para enganar pessoas, empresas ou órgãos públicos é crime.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>Massa de Teste, desenvolvido por <a href="https://raitz-enzo.github.io/SitePessoal/" target="_blank" rel="noopener">Enzo Raitz</a> na disciplina Programação para Web 1 (UTFPR).</p>
+        <p><a href="https://github.com/Raitz-Enzo/MassaDeTeste" target="_blank" rel="noopener noreferrer">Código no GitHub</a> &middot; <a href="#ferramenta">Voltar à ferramenta</a></p>
+    </footer>
+
+    <div id="aviso-rapido" class="aviso-rapido" role="status" aria-live="polite"></div>
+</body>
+</html>
